@@ -2,10 +2,20 @@ import { Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-const TextComponent = ({ image, title }) => {
+const TextComponent = ({ image, title, date, author, avatar, content }) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Details')}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate('Details', {
+          date,
+          author,
+          avatar,
+          content,
+        })
+      }
+    >
       <Image style={styles.image} source={{ uri: image }} />
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
@@ -13,7 +23,6 @@ const TextComponent = ({ image, title }) => {
 };
 
 export default TextComponent;
-
 const styles = StyleSheet.create({
   text: {
     fontSize: 20,

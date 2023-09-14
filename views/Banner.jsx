@@ -7,6 +7,7 @@ import TextComponent from '../component/TextComponent';
 import GlobalView from '../component/global/GlobalView';
 import { newsData, exploreData } from '../data/data';
 import Details from './Details';
+import Modal from './Modal';
 
 const Banner = () => {
   const [news, setNews] = useState(newsData);
@@ -38,15 +39,23 @@ const Banner = () => {
   );
 };
 
-export const BannerNavigationScreen = () =>{
+export const BannerNavigationScreen = () => {
   const BannerStackNavigator = createStackNavigator();
   return (
-    <BannerStackNavigator.Navigator initialRouteName='Banner'>
+    <BannerStackNavigator.Navigator initialRouteName="Banner">
       <BannerStackNavigator.Screen name="Banner" component={Banner} />
       <BannerStackNavigator.Screen name="Details" component={Details} />
+      <BannerStackNavigator.Screen
+        name="Modal"
+        component={Modal}
+        options={{
+          headerShown: false,
+          presentation: 'modal',
+        }}
+      />
     </BannerStackNavigator.Navigator>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

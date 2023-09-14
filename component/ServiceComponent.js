@@ -1,12 +1,17 @@
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const ServiceComponent = ({ image, title }) => {
+  const navigation = useNavigation();
   return (
-    <View style={[styles.container, styles.shadow]}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Modal', {
+      image,
+      title,
+    })}>
       <Image style={styles.image} source={{ uri: image }} />
       <Text style={styles.text}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -30,14 +35,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  shadow: {
-    // Propiedades de sombra específicas de Android
-    elevation: 5, // Ajusta esto según tus necesidades
-    // Propiedades de sombra específicas de iOS
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
   },
 });
