@@ -9,6 +9,7 @@ import Profile from '../views/Profile';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../auth/Login';
 import Market from '../views/Market';
+import CameraPicker from '../views/Camera';
 
 const TabNavigator = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -19,7 +20,7 @@ const Navigator = () => {
   const [user, setUser] = React.useState('');
   return (
     <Context.Provider value={{ user, setUser }}>
-      {user ? <SignedInNavigator /> : <SignedOutNavigator />}
+      {!user ? <SignedInNavigator /> : <SignedOutNavigator />}
     </Context.Provider>
   );
 };
@@ -46,6 +47,9 @@ const SignedInNavigator = () => {
                 case 'Profile':
                   iconName = 'face-man-profile';
                   break;
+                case 'Camera':
+                  iconName = 'camera';
+                  break;
                 default:
                   iconName = 'home';
                   break;
@@ -68,6 +72,7 @@ const SignedInNavigator = () => {
         <TabNavigator.Screen name="Home" component={BannerNavigationScreen} />
         <TabNavigator.Screen name="Services" component={Services} />
         <TabNavigator.Screen name="Market" component={Market} />
+        <TabNavigator.Screen name="Camera" component={CameraPicker} />
         <TabNavigator.Screen name="Profile" component={Profile} />
       </TabNavigator.Navigator>
     </NavigationContainer>
