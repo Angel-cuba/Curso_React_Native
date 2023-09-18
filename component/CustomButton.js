@@ -2,14 +2,15 @@ import { Pressable } from 'react-native'
 import React from 'react'
 import StyledText from './Text/StyledText'
 
-const Button = ({
+const CustomButton = ({
   label,
   onPress,
+  color
 }) => {
   return (
     <Pressable
       style={{
-          backgroundColor: 'blue',
+          backgroundColor: color || 'blue',
           padding: 10,
           borderRadius: 10,
           marginTop: 20,
@@ -25,4 +26,4 @@ const Button = ({
   )
 }
 
-export default Button
+export default CustomButton
