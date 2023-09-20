@@ -1,16 +1,10 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Alert,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, StyleSheet, TextInput, Alert, TouchableOpacity, Touchable, Pressable } from 'react-native';
 import React from 'react';
 import GlobalView from '../component/global/GlobalView';
 import { Context } from '../navigator/Navigator';
+import StyledText from '../component/Text/StyledText';
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const { setUser } = React.useContext(Context);
@@ -36,7 +30,6 @@ const Login = () => {
   return (
     <GlobalView>
       <View style={styles.container}>
-        <Text>Login</Text>
         <TextInput
           placeholder="Username"
           onChangeText={handleUsernameChange}
@@ -50,20 +43,40 @@ const Login = () => {
         <TouchableOpacity
           onPress={handleRequest}
           style={{
+            width: 200,
             backgroundColor: 'blue',
             borderRadius: 10,
             padding: 10,
             marginTop: 10,
+            alignItems: 'center',
           }}
         >
           <Text
             style={{
               color: 'white',
+              fontWeight: 'bold',
+              fontSize: 20,
             }}
           >
-            Press Me
+            Login
           </Text>
         </TouchableOpacity>
+        <StyledText
+          style={{
+            marginTop: 10,
+          }}
+        >
+          ¿No tienes cuenta?
+        </StyledText>
+        <Pressable onPress={() => navigation.navigate('SignUp')}>
+          <Text
+            style={{
+              color: 'blue',
+            }}
+          >
+            Register
+          </Text>
+        </Pressable>
       </View>
     </GlobalView>
   );
@@ -80,10 +93,11 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#d3d3d3',
     width: 200,
     height: 40,
     borderRadius: 10,
     paddingLeft: 10,
+    backgroundColor: 'white',
   },
 });

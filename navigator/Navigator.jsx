@@ -8,6 +8,7 @@ import Services from '../views/Services';
 import Profile from '../views/Profile';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../auth/Login';
+import SignUp from '../auth/SignUp';
 import Market from '../views/Market';
 import CameraPicker from '../views/Camera';
 
@@ -20,7 +21,7 @@ const Navigator = () => {
   const [user, setUser] = React.useState('');
   return (
     <Context.Provider value={{ user, setUser }}>
-      {!user ? <SignedInNavigator /> : <SignedOutNavigator />}
+      {!user ? <SignedOutNavigator /> : <SignedInNavigator />}
     </Context.Provider>
   );
 };
@@ -88,8 +89,10 @@ const SignedOutNavigator = () => {
           component={Login}
           options={{
             headerShown: false,
+            headerBackground: "#FF0000"
           }}
         />
+        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
